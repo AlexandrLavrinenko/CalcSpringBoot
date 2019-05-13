@@ -2,49 +2,42 @@ package ua.calc.CalcSpringBoot;
 
 import ua.calc.CalcSpringBoot.calculator.Calculator;
 
-import java.lang.reflect.Method;
-
 public class Calc {
-    /*
-    private final int a;
-    private final int b;
 
-    private final String oper;
+    private Calculator calculator;
+    private final Boolean success;
+    private int result;
+    private String error;
 
-    private final int result;
-
-    private final String error;
-    public Calc(int a, int b, String oper, int result, String error) {
-        this.a = a;
-        this.b = b;
-        this.oper = oper;
-        this.result = result;
-        this.error = error;
+    public Calc(Boolean success, int result) {
+        this.success = true;
+        getResult(new Calculator(3, 5, "plus")); // upd!!!
+        this.result = this.calculator.getResult();
     }
 
-    public long getA() {
-        return a;
+    public Calc(Boolean success, String error) {
+        this.success = false;
+        this.error = this.calculator.getError();
     }
 
-    public int getB() {
-        return b;
+    public int getResult(Calculator c) {
+        c.calculate();
+        this.calculator = c;
+        return calculator.getResult();
     }
 
-    public String getOper() {
-        return oper;
+    @Override
+    public String toString() {
+        return "Calc{" +
+                "success=" + success +
+                ", result=" + result +
+                ", error=" + error +
+                '}';
     }
-
-    public int getResult() {
-        Calculator c = new Calculator();
-        try {
-            Method m = Calculator.class.getMethod(getOper(), getA(), getB());
-        } catch (SecurityException e) {}
-        catch (NoSuchMethodException e) {}
-        return result;
-    }
-
-    public String getError() {
-        return error;
-    }
-    */
 }
+/*
+    "success": true,
+    "result": 133
+
+    Пример запроса: /calc?a=123&b=10&oper=plus
+ */

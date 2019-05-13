@@ -11,28 +11,53 @@ public class Calculator {
     /**
      * Результат вычисления.
      */
+    private int first, second;
     private String oper;
     private int result;
+
+    /**
+     * Конструктор.
+     *
+     * @param first  .
+     * @param second .
+     * @param oper .
+     */
+    public Calculator(int first, int second, String oper) {
+        this.first = first;
+        this.second = second;
+        this.oper = oper;
+    }
 
     private String error;
 
     /**
-     * Method plus.
-     * Суммируем два значения.
-     *
-     * @param first  .
-     * @param second .
+     * Method calculate.
+     * Выполняем операции над значениями.
      */
-    public void calculate (int first, int second, String oper) {
+    public void calculate () {
+        int first = getFirst();
+        int second = getSecond();
+        String oper = getOper();
         int res = 0;
+        setOper(oper);
         switch (oper){
             case ("plus"):
-                res = first + second;
+                try {
+                    res = first + second;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    setError(oper);
+                }
                 break;
 
                 case ("minus"):
-                res = first - second;
-                break;
+                    try {
+                        res = first - second;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        setError(oper);
+                    }
+                    break;
 
                 case ("divide"):
                     try {
@@ -40,13 +65,18 @@ public class Calculator {
                     } catch (Exception e) {
                         e.printStackTrace();
                         res = 0;
-                        setError("Operation 'wrong" + oper + "' is not supported");
+                        setError(oper);
                     }
                     break;
 
                 case ("multiply"):
-                res = first * second;
-                break;
+                    try {
+                        res = first * second;
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        setError(oper);
+                    }
+                    break;
         }
         this.result = res;
     }
@@ -59,11 +89,26 @@ public class Calculator {
         return oper;
     }
 
+    public void setOper(String oper) {
+        this.oper = oper;
+    }
+
+    public int getFirst() {
+        return first;
+    }
+
+    public int getSecond() {
+        return second;
+    }
+
     public String getError() {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
+    public void setError(String oper) {
+        StringBuilder stB = new StringBuilder("Operation 'wrong");
+        stB.append(oper);
+        stB.append("' is not supported");
+        this.error = stB.toString();
     }
 }

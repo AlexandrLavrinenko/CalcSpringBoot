@@ -9,8 +9,8 @@ public class CalculatorTest {
 
     @Test
     public void whenTenPlusTenThenTwenty() {
-        Calculator calc = new Calculator();
-        calc.calculate(10, 10, "plus");
+        Calculator calc = new Calculator(10, 10, "plus");
+        calc.calculate();
         int result = calc.getResult();
         int expected = 20;
         assertThat(result, is(expected));
@@ -18,8 +18,8 @@ public class CalculatorTest {
 
     @Test
     public void whenTenMinusFiveThenFive() {
-        Calculator calc = new Calculator();
-        calc.calculate(10, 5, "minus");
+        Calculator calc = new Calculator(10, 5, "minus");
+        calc.calculate();
         int result = calc.getResult();
         int expected = 5;
         assertThat(result, is(expected));
@@ -27,8 +27,8 @@ public class CalculatorTest {
 
     @Test
     public void whenTwelweDivideTwoThenSix() {
-        Calculator calc = new Calculator();
-        calc.calculate(12, 2, "divide");
+        Calculator calc = new Calculator(12, 2, "divide");
+        calc.calculate();
         int result = calc.getResult();
         int expected = 6;
         assertThat(result, is(expected));
@@ -36,8 +36,8 @@ public class CalculatorTest {
 
     @Test
     public void whenSevenMultiplyFourThenTwentyEight() {
-        Calculator calc = new Calculator();
-        calc.calculate(7, 4, "multiply");
+        Calculator calc = new Calculator(7, 4, "multiply");
+        calc.calculate();
         int result = calc.getResult();
         int expected = 28;
         assertThat(result, is(expected));
@@ -45,8 +45,8 @@ public class CalculatorTest {
 
     @Test
     public void whenEightDivideZeroThenErrZeroPartOne() {
-        Calculator calc = new Calculator();
-        calc.calculate(8, 0, "divide");
+        Calculator calc = new Calculator(8, 0, "divide");
+        calc.calculate();
         int result = calc.getResult();
         int expected = 0;
         assertThat(result, is(expected));
@@ -54,8 +54,8 @@ public class CalculatorTest {
 
     @Test
     public void whenEightDivideZeroThenErrZeroPartTwo() {
-        Calculator calc = new Calculator();
-        calc.calculate(8, 0, "divide");
+        Calculator calc = new Calculator(8, 0, "divide");
+        calc.calculate();
         int result = calc.getResult();
         String errorTxt = calc.getError();
         String expected = "Operation 'wrongdivide' is not supported";
